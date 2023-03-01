@@ -177,9 +177,9 @@ def split_into_chunks(input_list, chunk_size) -> list:
 # In[53]:
 
 
-def merge_dicts(*dicts) -> dict:
+def merge_dicts(*dict) -> dict:
     output_dict = {}
-    for item in dicts:
+    for item in dict:
         output_dict.update(item)
     return output_dict
 
