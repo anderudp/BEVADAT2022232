@@ -34,3 +34,12 @@ def get_array_shape(input_arr: np.array) -> str:
 # encode_Y()
 def encode_Y(input_arr, class_count) -> np.array:
     return np.identity(class_count)[input_arr]
+    # Az identity mátrix megfelelő sorát veszi minden klasszifikációhoz
+
+
+# A fenti feladatnak valósítsd meg a kiértékelését. Adj meg a 2d array-t és adj vissza a decodolt változatát
+# Be:  [[0,1,0,0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]]
+# Ki:  [1, 2, 0, 3]
+# decode_Y()
+def decode_Y(input_arr) -> np.array:
+    
