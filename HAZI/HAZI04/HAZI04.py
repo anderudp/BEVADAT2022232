@@ -86,5 +86,5 @@ def ethnicity_pie_chart(input_df: pd.DataFrame) -> plt.Figure:
     fig, ax = plt.subplots()
     ax.pie(new_df["counts"], autopct='%1.1f%%', labels=new_df['race/ethnicity'])
     ax.set_title('Proportion of Students by Race/Ethnicity')
-    plt.show()
+    #plt.show()
     return fig
