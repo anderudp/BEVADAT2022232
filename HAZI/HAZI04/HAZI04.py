@@ -82,7 +82,6 @@ def writing_hist(input_df: pd.DataFrame) -> plt.Figure:
 def ethnicity_pie_chart(input_df: pd.DataFrame) -> plt.Figure:
     new_df = input_df.copy()
     new_df = new_df.groupby(['race/ethnicity']).size().reset_index(name="counts")
-    print(new_df)
     fig, ax = plt.subplots()
     ax.pie(new_df["counts"], autopct='%1.1f%%', labels=new_df['race/ethnicity'])
     ax.set_title('Proportion of Students by Race/Ethnicity')
