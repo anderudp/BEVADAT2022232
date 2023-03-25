@@ -1,4 +1,3 @@
-import random
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -30,8 +29,8 @@ def average_scores(input_df: pd.DataFrame) -> pd.DataFrame:
 
 def add_age(input_df: pd.DataFrame) -> pd.DataFrame:
     new_df = input_df.copy()
-    random.seed(42)
-    age = [random.randint(18, 66) for i in range(new_df.shape[0])]
+    np.random.seed(42)
+    age = [np.random.randint(18, 67) for i in range(new_df.shape[0])]
     new_df['age'] = age
     return new_df
 
