@@ -12,7 +12,6 @@ class KNNClassifier:
 
     @staticmethod
     def load_csv(self, csv_path: str) -> Tuple[np.ndarray, np.ndarray]:
-        np.random.seed(42)
         dataset = np.genfromtxt(csv_path, delimiter=',')
         np.random.seed(42)
         np.random.shuffle(dataset, )
