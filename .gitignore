@@ -109,3 +109,4 @@ fabric.properties
 test.py
 DEMO/
 *.csv
+*.pyc
