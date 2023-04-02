@@ -1,5 +1,6 @@
 import pandas as pd
 from typing import Tuple
+from scipy.stats import mode
 
 class KNNClassifier:
     def __init__(self, k: int, test_split_ratio: float):
@@ -26,11 +27,11 @@ class KNNClassifier:
         self.y_preds = self.y_preds.reset_index(drop=True).sub(element_of_x.reset_index(drop=True).loc[0], axis=1) ** 2
         self.y_preds = self.y_preds.sum(axis=1).pow(1/2)
 
-    def predict(self, x_test: pd.DataFrame) -> pd.DataFrame:
+    def predict(self) -> pd.DataFrame:
         labels_pred = []
-        for x_test_element in x_test:
-            self.euclidean(x_test_element)
-            self.y_preds = np.array(sorted(zip(self.y_preds, self.y_train)))
-            label_pred = mode(self.y_preds[:self.k, 1], keepdims=False).mode
+        for index, row in self.x_test.iterrows():
+            self.euclidean(row)
+            distances = pd.concat([self.y_preds.reset_index(drop=True), self.y_train.reset_index(drop=True)], axis=1).sort_values(0)
+            label_pred = mode(distances.iloc[:self.k, 1])
             labels_pred.append(label_pred)
-        return np.array(labels_pred, dtype=np.int32)
+        return labels_pred
