@@ -22,11 +22,15 @@ class KNNClassifier:
         self.x_test, self.y_test = features.iloc[train_size:train_size + test_size, :], labels.iloc[train_size:train_size + test_size]
 
     def euclidean(self, element_of_x: pd.DataFrame):
-        self.y_preds = ((self.x_train - element_of_x) ** 2).sum(axis=0).pow(1/2)
+        self.y_preds = self.x_train.copy()
+        self.y_preds = self.y_preds.reset_index(drop=True).sub(element_of_x.reset_index(drop=True).loc[0], axis=1) ** 2
+        self.y_preds = self.y_preds.sum(axis=1).pow(1/2)
 
-
-knn5 = KNNClassifier(5, 0.2)
-x, y = KNNClassifier.load_csv(r"C:\Users\Anderu\JNM4EY_BEVADAT2022232\HAZI\HAZI05\iris.csv")
-knn5.train_test_split(x, y)
-knn5.euclidean(x[0])
-print(knn5.y_preds)
+    def predict(self, x_test: pd.DataFrame) -> pd.DataFrame:
+        labels_pred = []
+        for x_test_element in x_test:
+            self.euclidean(x_test_element)
+            self.y_preds = np.array(sorted(zip(self.y_preds, self.y_train)))
+            label_pred = mode(self.y_preds[:self.k, 1], keepdims=False).mode
+            labels_pred.append(label_pred)
+        return np.array(labels_pred, dtype=np.int32)
