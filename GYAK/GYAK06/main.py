@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 from DecisionTreeClassifier import DecisionTreeClassifier
 
 col_name = ["sepal_length", "sepal_width", "petal_length", "petal_width", "type"]
-data = pd.read_csv(r"/GYAK/GYAK06/iris.csv", skiprows=1, header=None, names=col_name)
+data = pd.read_csv(r"C:\Users\Anderu\JNM4EY_BEVADAT2022232\GYAK\GYAK06\iris.csv", skiprows=1, header=None, names=col_name)
 
 X = data.iloc[:, :-1].values
 Y = data.iloc[:, -1].values.reshape(-1, 1)
