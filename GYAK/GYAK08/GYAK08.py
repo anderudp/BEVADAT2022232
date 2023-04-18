@@ -15,5 +15,3 @@ model.fit(X, y)
 
 y_test_pred = np.array([model.predict(X) for X in model.X_test])
 results = pd.DataFrame({"Predictions": y_test_pred, "Real": model.y_test})
-print(model.loss)
-print(results.head(30))
