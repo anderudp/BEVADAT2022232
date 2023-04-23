@@ -13,15 +13,14 @@ class LinearRegression:
 
 
     def fit(self, X: np.array, y: np.array):
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        self.X_test = X_test
-        self.y_test = y_test
-        n = float(len(X_train))  # Number of elements in X
+        n = float(len(X))  # Number of elements in X
+        self.m = 0
+        self.c = 0
 
         for i in range(self.epochs):
-            y_pred = self.m * X_train + self.c  # The current predicted value of Y
-            residuals = y_pred - y_train
-            D_m = (-2 / n) * sum(X_train * residuals)  # Derivative wrt m
+            y_pred = self.m * X + self.c  # The current predicted value of Y
+            residuals = y - y_pred
+            D_m = (-2 / n) * sum(X * residuals)  # Derivative wrt m
             D_c = (-2 / n) * sum(residuals)  # Derivative wrt c
             self.m = self.m - self.lr * D_m  # Update m
             self.c = self.c - self.lr * D_c  # Update c
