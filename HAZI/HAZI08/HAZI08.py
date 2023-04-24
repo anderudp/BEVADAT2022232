@@ -31,7 +31,7 @@ def logistic_train_data(bunch):
 
 
 def split_data(X, y):
-    return train_test_split(X, y)
+    return train_test_split(X, y, random_state=42, test_size=0.2)
 
 
 def train_linear_regression(X_train, y_train):
@@ -53,6 +53,7 @@ def plot_actual_vs_predicted(y_test, y_pred):
     ax.set_ylabel('Predicted')
     ax.scatter(y_test, y_pred)
     #plt.show()
+    return fig
 
 def evaluate_model(y_test, y_pred):
     return mean_squared_error(y_test, y_pred)
